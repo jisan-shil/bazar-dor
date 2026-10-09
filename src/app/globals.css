@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: false;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@plugin "daisyui/theme" {
+  name: "bazar";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #fbfdfb;
+  --color-base-200: #f2f6f1;
+  --color-base-300: #e1e9de;
+  --color-base-content: #14231a;
+  --color-primary: #078a43;
+  --color-primary-content: #ffffff;
+  --color-secondary: #0f9d58;
+  --color-secondary-content: #ffffff;
+  --color-accent: #078a43;
+  --color-accent-content: #ffffff;
+  --color-neutral: #14231a;
+  --color-neutral-content: #ffffff;
+  --color-info: #2563eb;
+  --color-success: #0f9d58;
+  --color-warning: #f59e0b;
+  --color-error: #d32f2f;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-bangla), system-ui, sans-serif;
+  background: var(--color-base-200);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+html {
+  scroll-behavior: smooth;
 }
