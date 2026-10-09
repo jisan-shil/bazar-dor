@@ -1,0 +1,25 @@
+"use client";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { signOut } from "@/lib/auth-client";
+
+export default function SignOutButton() {
+  const router = useRouter();
+  const onClick = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          toast.success("সফলভাবে সাইন আউট হয়েছে");
+          router.push("/");
+          router.refresh();
+        },
+        onError: () => toast.error("সাইন আউট করা যায়নি"),
+      },
+    });
+  };
+  return (
+    <button onClick={onClick} className="btn btn-outline btn-error btn-sm sm:btn-md">
+      ↩ সাইন আউট
+    </button>
+  );
+}
