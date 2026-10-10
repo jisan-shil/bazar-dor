@@ -24,12 +24,16 @@ export default function SignUpPage() {
     if (password !== confirm) return toast.error("পাসওয়ার্ড দুটি মিলছে না");
 
     setLoading(true);
-    const { error } = await signUp.email({ name, email, password });
-    setLoading(false);
-
-    if (error) return toast.error(error.message || "অ্যাকাউন্ট তৈরি করা যায়নি");
-    toast.success("অ্যাকাউন্ট তৈরি হয়েছে, এখন সাইন ইন করুন");
-    router.push("/signin");
+    try {
+      const { error } = await signUp.email({ name, email, password });
+      if (error) return toast.error(error.message || "অ্যাকাউন্ট তৈরি করা যায়নি");
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে, এখন সাইন ইন করুন");
+      router.push("/signin");
+    } catch {
+      toast.error("সার্ভারের সাথে সংযোগ হয়নি, আবার চেষ্টা করুন");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
