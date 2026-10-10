@@ -13,7 +13,9 @@ export default function SignOutButton() {
           router.push("/");
           router.refresh();
         },
-        onError: () => toast.error("সাইন আউট করা যায়নি"),
+              onError: () => {
+          toast.error("সাইন আউট করা যায়নি");
+        },
       },
     });
   };
