@@ -16,7 +16,7 @@ export default function Hero() {
         </a>
       </div>
       <Image
-        src="/images/bazar-hero.png"
+        src="/bazar-hero.png"
         alt="সবজির ঝুড়ি"
         width={320}
         height={270}
