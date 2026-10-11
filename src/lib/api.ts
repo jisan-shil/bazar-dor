@@ -5,17 +5,20 @@ const BASE = process.env.NEXT_PUBLIC_API_BASE!;
 async function get<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${BASE}${path}`, {
-      headers: { Accept: "application/json" },
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "Mozilla/5.0 (compatible; BazarDor/1.0)",
+      },
       next: { revalidate: 300 },
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(15000),
     });
     if (!res.ok) {
-      console.error("[api]", res.status, path);
+      console.error("[api]", res.status, `${BASE}${path}`);
       return null;
     }
     return (await res.json()) as T;
   } catch (e) {
-    console.error("[api] fetch failed:", path, e);
+    console.error("[api] fetch failed:", `${BASE}${path}`, String(e));
     return null;
   }
 }

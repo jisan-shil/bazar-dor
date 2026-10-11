@@ -4,6 +4,7 @@ import EmptyState from "@/components/EmptyState";
 import { getProducts } from "@/lib/api";
 import { topFallers, topRisers } from "@/lib/products";
 import { toBn } from "@/lib/bn";
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const products = await getProducts();

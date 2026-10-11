@@ -6,6 +6,7 @@ import PriceTicker from "@/components/PriceTicker";
 import Footer from "@/components/Footer";
 import { getCategories, getProducts } from "@/lib/api";
 import "./globals.css";
+export const dynamic = "force-dynamic";
 
 const font = Hind_Siliguri({
   subsets: ["bengali", "latin"],
