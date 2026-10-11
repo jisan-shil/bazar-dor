@@ -1,6 +1,8 @@
 import type { Category, Product } from "./types";
 
-const BASE = process.env.NEXT_PUBLIC_API_BASE!;
+const BASE =
+  process.env.NEXT_PUBLIC_API_BASE ||
+  "https://openapi.programming-hero.com/api/bazardor";
 
 async function get<T>(path: string): Promise<T | null> {
   try {

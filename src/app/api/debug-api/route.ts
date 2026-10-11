@@ -1,7 +1,10 @@
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE}/products`;
+  const url = `${
+    process.env.NEXT_PUBLIC_API_BASE ||
+    "https://openapi.programming-hero.com/api/bazardor"
+  }/products`;
   const start = Date.now();
   try {
     const res = await fetch(url, {
