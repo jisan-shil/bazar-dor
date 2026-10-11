@@ -6,10 +6,14 @@ import { db } from "./mongodb";
 export const auth = betterAuth({
   database: mongodbAdapter(db),
   baseURL: process.env.BETTER_AUTH_URL,  
-  trustedOrigins: [
+  
+   trustedOrigins: [
+    process.env.BETTER_AUTH_URL,
+    process.env.NEXT_PUBLIC_APP_URL,
     "https://bazar-dor-five-rho.vercel.app",
     "http://localhost:3000",
-  ],
+  ].filter((o): o is string => Boolean(o)),
+
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
